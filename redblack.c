@@ -34,6 +34,22 @@ rbnode_t rb_node_create(rbnode_t Tnil);
 rbnode_t rb_tree_minimum(rbtree_t T, rbnode_t x);
 rbnode_t rb_tree_maximum(rbtree_t T, rbnode_t x);
 rbnode_t rb_search(rbtree_t T, uint64_t k);
+void rb_iterate(rbtree_t T, int(*)(rbnode_t));
+void rb_iter(rbnode_t x, rbnode_t Tnil, int(*)(rbnode_t));
+
+void rb_iterate(rbtree_t T, int(*callback)(rbnode_t))
+{
+    rb_iter(T->root, T->Tnil, callback);
+}
+
+void rb_iter(rbnode_t x, rbnode_t Tnil, int(*callback)(rbnode_t))
+{
+    if (x->left != Tnil)
+        rb_iter(x->left, Tnil, callback);
+    callback(x);
+    if (x->right != Tnil)
+        rb_iter(x->right, Tnil, callback);
+}
 
 rbnode_t rb_node_create(rbnode_t Tnil)
 {
@@ -307,6 +323,11 @@ rbnode_t rb_search(rbtree_t T, uint64_t k)
 
 #ifdef MAIN
 
+int iter_callback(rbnode_t x) {
+    printf("key: %llx\n", x->key);
+    return 0;
+}
+
 int main(int argc, char *argv[]) {
     rbtree_t t;
     rbnode_t s;
@@ -325,7 +346,7 @@ int main(int argc, char *argv[]) {
     } else {
         printf("not found! boo!\n");
     }
-
+    rb_iterate(t, iter_callback);
     rb_destroy(t);
 }
 
