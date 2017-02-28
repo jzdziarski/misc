@@ -250,7 +250,7 @@ void rb_delete(rbtree_t T, rbnode_t z)
 
 void rb_delete_fixup(rbtree_t T, rbnode_t x)
 {
-    while(x != T->root && x->color == RBBLACK)
+    while(x != T->root && x->color == RBBLACK && x != T->Tnil)
     {
         if (x == x->p->left) {
             rbnode_t w = x->p->right;
