@@ -116,7 +116,7 @@ void rb_rotate_right(rbtree_t T, rbnode_t x)
     y->p = x->p;
     if (x->p == T->Tnil)
         T->root = y;
-    else if (x == x->p->left)
+    else if (x == x->p->right)
         x->p->right = y;
     else
         x->p->left = y;
