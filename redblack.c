@@ -86,6 +86,8 @@ void rb_destroy(rbtree_t T)
         rb_node_destroy(z);
         z = T->root;
     }
+    free(T->Tnil);
+    free(T);
 }
 
 void rb_rotate_left(rbtree_t T, rbnode_t x)
