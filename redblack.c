@@ -334,7 +334,7 @@ rbnode_t rb_search(rbtree_t T, uint64_t k)
 #ifdef MAIN
 
 int iter_callback(rbnode_t x) {
-    printf("key: %llx\n", x->key);
+    // printf("key: %llx\n", x->key);
     return 0;
 }
 
