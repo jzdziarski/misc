@@ -1,3 +1,11 @@
+/*
+ * red/black tree; based on Introduction to Algorithms, 3rd Edition 
+ * (third edition improved the deletion function)
+ *
+ * Jonathan Zdziarski
+ * Public Domain 
+ */
+
 #include <inttypes.h>
 #include <stdlib.h>
 #include <strings.h>
